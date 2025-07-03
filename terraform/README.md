@@ -1,11 +1,11 @@
 # Terraform을 이용한 AWS OpenSearch Serverless 구축 가이드
-## 개요
+## 1. 개요
 - 이 문서는 AWS OpenSearch Serverless를 Terraform을 이용하여 구축하는 과정을 상세하게 안내합니다. 
 - Terraform은 HashiCorp에서 개발한 IaC(Infrastructure as Code) 도구입니다.
 - 코드를 통해 클라우드 및 온프레미스 리소스를 효율적으로 프로비저닝하고 관리할 수 있게 해줍니다. 
 - 이 가이드를 통해 Terraform의 기본적인 사용법을 익히고, AWS OpenSearch Serverless 인프라를 자동으로 생성 및 관리하는 방법을 배울 수 있습니다.
 
-## Terraform 설치
+## 2. Terraform 설치
 - 링크: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 ```shell
 brew tap hashicorp/tap
@@ -20,7 +20,7 @@ brew install hashicorp/tap/terraform
 plugins=(git terraform)
 ```
 
-## Terraform 실행
+## 3. Terraform 실행
 ### 초기화(Init)
 - Terraform 프로젝트를 시작하기 위해 필요한 AWS 프로바이더 플러그인을 다운로드합니다.
 ```shell
