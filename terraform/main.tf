@@ -112,7 +112,9 @@ resource "aws_opensearchserverless_access_policy" "data_access_policy" {
 resource "aws_opensearchserverless_collection" "main" {
   # 컬렉션 이름은 계정 및 리전 내에서 고유해야 합니다.
   name = "${var.student_id}"
-  type = "SEARCH" # 일반적인 검색 용도
+  # type = "SEARCH" # 일반 검색 용도
+  type = "VECTORSEARCH" # 벡터 검색과 일반 검색 모두 지원
+
 
   # 정책들이 먼저 생성되도록 의존성 명시
   depends_on = [
