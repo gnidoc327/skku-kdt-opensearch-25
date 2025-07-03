@@ -1,0 +1,11 @@
+# index 목록 조회
+GET _cat/indices?v
+
+# index 삭제
+DELETE json-test
+
+# json-test index 상세 내용
+GET json-test
+
+# json-test index의 mapping만 확인
+GET json-test/_mapping

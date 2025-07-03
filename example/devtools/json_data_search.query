@@ -1,0 +1,38 @@
+# 전체 검색
+GET json-test/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# 자연어 검색
+GET json-test/_search
+{
+  "query": {
+    "match": {
+      "title": "오픈서치"
+    }
+  }
+}
+
+# keyword 검색
+## tags 타입이 text인 경우
+GET json-test/_search
+{
+  "query": {
+    "term": {
+      "tags.keyword": "python"
+    }
+  }
+}
+
+## tags 타입이 keyword인 경우
+GET json-test/_search
+{
+  "query": {
+    "terms": {
+      "tag": ["python"]
+    }
+  }
+}

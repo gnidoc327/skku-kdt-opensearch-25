@@ -1,0 +1,19 @@
+# 데이터 추가
+## 추가
+POST json-test/_doc
+{
+  "post_id": 51,
+  "title": "새로운 데이터 추가 테스트",
+  "content": "Dev Tools를 사용하여 단일 문서를 색인합니다. 한국어 분석이 잘 되는지 확인합니다.",
+  "author": "gemini-code-assist",
+  "timestamp": "2023-10-27T10:00:00"
+}
+## 검색
+GET json-test/_search
+{
+  "query": {
+    "match": {
+      "post_id": 51
+    }
+  }
+}
