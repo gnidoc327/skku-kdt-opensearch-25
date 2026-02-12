@@ -62,7 +62,7 @@ aws configure --profile skku-opensearch
 brew install python@3.13
 ```
 
-## 5. 가상환경 및 Jupyter Notebook 설정
+## 5. 가상환경 및 JupyterLab 설정
 
 ##### 1) 가상환경 생성
 ```shell
@@ -76,16 +76,16 @@ source .venv/bin/activate
 ```
 > 터미널 프롬프트 앞에 `(.venv)`가 표시되면 활성화된 상태입니다.
 
-##### 3) Jupyter 설치
+##### 3) JupyterLab 설치
 ```shell
-pip install jupyter ipykernel
+pip install jupyterlab ipykernel
 ```
 
-##### 4) Jupyter Notebook 실행
+##### 4) JupyterLab 실행
 ```shell
-jupyter notebook
+jupyter lab
 ```
-- 브라우저에서 Jupyter가 열리면 `example/` 폴더로 이동하여 각 step별 `.ipynb` 파일을 실행합니다.
+- 브라우저에서 JupyterLab이 열리면 왼쪽 파일 탐색기에서 `example/` 폴더의 각 step별 `.ipynb` 파일을 실행합니다.
 - 각 노트북의 셀을 순서대로 실행하면 됩니다. (Shift + Enter)
 - 각 노트북 첫 셀에 `!pip install ...` 명령이 포함되어 있어 실습에 필요한 패키지가 자동으로 설치됩니다.
 
