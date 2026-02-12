@@ -131,8 +131,8 @@ def _format_image_refs(output):
     for line in output.split("\n"):
         if "이미지 경로:" not in line:
             continue
-        rel_path = line.split("이미지 경로: ")[-1].strip()
-        abs_path = os.path.normpath(os.path.join(_config_dir, rel_path))
+        image_path = line.split("이미지 경로: ")[-1].strip()
+        abs_path = image_path if os.path.isabs(image_path) else os.path.normpath(os.path.join(_config_dir, image_path))
         if not os.path.isfile(abs_path):
             refs += f"\n- `{rel_path}` (파일 없음)"
             continue

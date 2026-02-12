@@ -183,7 +183,71 @@ AWS STS 세션 토큰이 만료되면 Claude Code가 동작하지 않습니다.
 
 ---
 
-## 6. 주의사항
+## 6. 실습 과제: MCP 서버 만들어보기
+
+Claude Code에게 MCP 서버를 만들어달라고 요청해보세요. 아래 3가지 중 하나를 골라서 시도해봅니다.
+
+### 과제 A: 메모장 MCP
+
+로컬 파일에 메모를 저장하고 조회하는 MCP 서버입니다.
+
+```
+메모장 MCP 서버를 만들어줘.
+FastMCP를 사용하고 아래 도구를 구현해줘:
+- add_memo: 제목과 내용으로 메모 추가 (JSON 파일에 저장)
+- list_memos: 저장된 메모 목록 조회
+- search_memos: 키워드로 메모 검색
+- delete_memo: 메모 삭제
+```
+
+> 외부 라이브러리 없이 `json` 모듈만으로 구현 가능합니다.
+
+### 과제 B: 계산기 MCP
+
+다양한 계산을 수행하는 MCP 서버입니다.
+
+```
+계산기 MCP 서버를 만들어줘.
+FastMCP를 사용하고 아래 도구를 구현해줘:
+- calculate: 수학 표현식 계산 (예: "3 * 4 + 2")
+- unit_convert: 단위 변환 (예: km→mile, kg→lb, 섭씨→화씨)
+- percentage: 퍼센트 계산 (예: 1500의 30%)
+```
+
+> `math` 모듈만으로 구현 가능합니다. 보안을 위해 `eval()` 대신 안전한 파싱을 사용하도록 요청해보세요.
+
+### 과제 C: 위키피디아 MCP
+
+위키피디아에서 정보를 검색하는 MCP 서버입니다.
+
+```
+위키피디아 MCP 서버를 만들어줘.
+FastMCP를 사용하고 아래 도구를 구현해줘:
+- search_wiki: 키워드로 위키피디아 문서 검색
+- get_summary: 특정 문서의 요약 가져오기
+- get_sections: 문서의 목차(섹션 목록) 가져오기
+wikipedia 패키지를 사용해줘.
+```
+
+```bash
+# 패키지 설치
+pip install wikipedia
+```
+
+### 만든 MCP 서버 테스트하기
+
+만든 서버를 Step 5의 Chainlit 챗봇에 연결하거나, 노트북에서 테스트할 수 있습니다:
+
+```python
+from mcp.server.fastmcp import FastMCP
+
+# 터미널에서 직접 실행하여 테스트
+# python my_mcp_server.py
+```
+
+---
+
+## 7. 주의사항
 
 - `AWS_REGION` 환경변수는 **필수**입니다. Claude Code는 `~/.aws/config` 파일의 리전 설정을 읽지 않습니다.
 - Bedrock 모드에서는 `/login`, `/logout` 명령이 비활성화됩니다 (AWS 인증 사용).
@@ -192,7 +256,7 @@ AWS STS 세션 토큰이 만료되면 Claude Code가 동작하지 않습니다.
 
 ---
 
-## 참고 링크
+## 8. 참고 링크
 
 - [Claude Code 공식 문서](https://docs.anthropic.com/en/docs/claude-code/overview)
 - [Claude Code + Bedrock 설정 가이드](https://docs.anthropic.com/en/docs/claude-code/bedrock) — 버전 업그레이드 시 이 문서를 참고하세요

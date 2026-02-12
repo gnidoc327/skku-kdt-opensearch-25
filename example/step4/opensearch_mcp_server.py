@@ -21,6 +21,9 @@ from opensearchpy import OpenSearch, AWSV4SignerAuth, RequestsHttpConnection
 from mcp.server.fastmcp import FastMCP
 
 # --- 설정 (환경변수에서 읽기) ---
+_SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
+_DATA_IMAGE_DIR = os.path.normpath(os.path.join(_SERVER_DIR, "..", "..", "data", "image"))
+
 HOST = os.environ["OPENSEARCH_HOST"]
 DEFAULT_REGION = os.environ.get("DEFAULT_REGION", "ap-northeast-2")
 BEDROCK_REGION = os.environ.get("BEDROCK_REGION", "us-east-1")
@@ -137,7 +140,9 @@ def search_images(query: str) -> str:
             return "검색 결과가 없습니다."
         results = []
         for i, hit in enumerate(hits):
-            image_path = hit["_source"].get("image_path", "N/A")
+            raw_path = hit["_source"].get("image_path", "N/A")
+            filename = os.path.basename(raw_path)
+            image_path = os.path.join(_DATA_IMAGE_DIR, filename)
             results.append(
                 f"[{i+1}] (유사도: {hit['_score']:.3f}) 이미지 경로: {image_path}"
             )
