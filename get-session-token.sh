@@ -8,7 +8,7 @@ TARGET_PROFILE="skku-opensearch-session"
 
 # STS 임시 자격 증명 발급
 CREDS=$(aws sts get-session-token \
-    --duration-seconds 3600 \
+    --duration-seconds 43200 \
     --profile "$SOURCE_PROFILE" \
     --output json)
 

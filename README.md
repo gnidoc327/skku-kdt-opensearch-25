@@ -51,35 +51,74 @@ aws configure --profile skku-opensearch
 brew install python@3.12
 ```
 
-## 5. Poetry
-> 버전: 2.1.3 이상
-##### Poetry란?
-- Python 의존성 관리 및 패키징 도구입니다.
-- 프로젝트의 의존성을 선언하고 관리하며, 패키지를 빌드하고 게시하는 데 사용됩니다.
-- 공식문서: https://python-poetry.org/docs/
+## 5. 가상환경 및 Jupyter Notebook 설정
 
-##### 설치방법
+##### 가상환경 생성 및 Jupyter 설치
 ```shell
-# poetry 설치
-curl -sSL https://install.python-poetry.org | python3 -
-# poetry shell(plugin) 설치
-poetry self add poetry-plugin-export
-# 설정 변경
-poetry config virtualenvs.in-project true
+# 가상환경 생성
+python3.12 -m venv .venv
+
+# 가상환경 활성화 (macOS/Linux)
+source .venv/bin/activate
+
+# Jupyter 설치
+pip install jupyter ipykernel
 ```
 
-##### 가상환경 생성
+##### Jupyter Notebook 실행
 ```shell
-poetry env use python3.12
-poetry shell
-poetry install --no-root
+# 가상환경이 활성화된 상태에서
+jupyter notebook
+```
+- 각 노트북 첫 셀에 `!pip install ...` 명령이 포함되어 있어 실습에 필요한 패키지가 자동으로 설치됩니다.
+- 브라우저에서 Jupyter가 열리면 `example/` 폴더로 이동하여 각 step별 `.ipynb` 파일을 실행합니다.
+- 각 노트북의 셀을 순서대로 실행하면 됩니다. (Shift + Enter)
+
+##### Step5 (Chainlit) 실행
+- step5는 Chainlit 앱이므로 터미널에서 직접 실행합니다.
+```shell
+# 가상환경이 활성화된 상태에서
+cd example/step5 && chainlit run 0_chainlit.py -w
 ```
 
-##### 프로그램 실행
-- pycharm 사용시 [ctrl + alt + R]로 실행 가능
+##### Step6 (Claude Code) 실행
+- step6는 Claude Code(AI 코딩 에이전트)를 Bedrock 모델로 사용하는 실습입니다.
 ```shell
-poetry run python example/python/0-test.py
+# 환경 설정 스크립트 실행
+source example/step6/setup-claude-code.sh
+
+# Claude Code 실행
+claude
 ```
+
+## 실습 커리큘럼
+> `example/` 폴더 내 Jupyter Notebook으로 진행
+
+| Step | 주제 | 설명 |
+|------|------|------|
+| **Step 0** | 환경 설정 | AWS 연결 확인 및 config.json 생성 |
+| **Step 1** | 기본 검색 | 인덱스 CRUD, 텍스트 검색, Nori 한국어 분석기, 집계 |
+| **Step 2** | 벡터 검색 (로컬) | Sentence Transformers 로컬 모델로 텍스트 벡터 검색 |
+| **Step 3** | 벡터 검색 (Bedrock) | Titan/Nova 클라우드 모델로 텍스트·이미지 벡터 검색 |
+| **Step 4** | RAG 파이프라인 | 벡터 검색 + Claude LLM으로 답변 생성 및 이미지 분석 |
+| **Step 5** | 채팅 앱 | Chainlit + MCP로 AI Agent 챗봇 구현 |
+| **Step 6** | Claude Code | Bedrock 모델로 AI 코딩 에이전트 사용 |
+
+#### Step 3 상세
+| 노트북 | 설명 |
+|--------|------|
+| 3-0 | Bedrock Titan 텍스트 임베딩 데이터 업로드 |
+| 3-1 | Bedrock Titan 텍스트 벡터 검색 |
+| 3-2a | 이미지 임베딩 업로드 — **Titan** (영어 전용) |
+| 3-2b | 이미지 임베딩 업로드 — **Nova** (한국어 포함 200개 언어) |
+| 3-3 | 이미지로 유사 이미지 검색 (Nova) |
+| 3-4 | 텍스트로 이미지 검색 (Nova, 한국어 가능) |
+
+#### Step 4 상세
+| 노트북 | 설명 |
+|--------|------|
+| 4-0 | 이미지 검색 + Claude LLM 이미지 분석 (RAG) |
+| 4-1 | 텍스트 검색 + Claude LLM 요약 (RAG) |
 
 ## 6. Terraform
 > [terraform/README.md](terraform/README.md) 에서 확인

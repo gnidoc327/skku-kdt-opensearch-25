@@ -100,7 +100,7 @@ resource "aws_opensearchserverless_access_policy" "data_access_policy" {
       ],
       # Terraform을 실행하는 현재 IAM 사용자/역할에 권한 부여
       "Principal" : [
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+        "${data.aws_caller_identity.current.arn}"
       ]
     }
   ])

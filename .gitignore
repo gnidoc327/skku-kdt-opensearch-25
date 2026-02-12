@@ -396,3 +396,10 @@ terraform.rc
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/git,ssh,linux,macos,python,jetbrains+all,jupyternotebooks,visualstudiocode,terraform
+
+### Project ###
+# Step 0에서 생성하는 환경별 설정 파일
+example/config.json
+
+# Chainlit 자동 생성 파일
+example/step5/.chainlit/
